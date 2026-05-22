@@ -10,13 +10,22 @@
 
 # 🧾 Incident Summary
 
-A suspicious PowerShell execution was detected on workstation `WKSTN-FIN-03` after a user clicked on a phishing link received through a web browser.
+A suspicious PowerShell execution was identified on workstation `WKSTN-FIN-03` shortly after a user accessed a phishing URL through Google Chrome.
 
-The PowerShell process was executed using obfuscated parameters and attempted to download a remote payload from an external IP address.
+The activity resembled malware delivery techniques commonly associated with real-world phishing campaigns such as Emotet and Qakbot, where obfuscated PowerShell commands are used to download and execute remote payloads directly in memory.
 
-The activity was identified through Sysmon process creation logs and correlated with suspicious outbound network traffic.
+The command used Base64 encoding combined with hidden window execution parameters (`-nop -w hidden -enc`) to evade detection and reduce visibility to the end user.
 
----
+Further investigation revealed:
+
+- Suspicious PowerShell child process spawned from browser activity
+- Encoded command execution
+- Remote payload retrieval attempt
+- Potential command-and-control communication behavior
+- Fileless execution characteristics
+
+The incident was classified as a HIGH severity threat due to the possibility of malware staging and lateral movement preparation
+
 
 # 🚨 Detection
 
