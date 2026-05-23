@@ -128,3 +128,22 @@ Planned screenshots:
 - Wazuh alert dashboard
 - CyberChef Base64 decoding
 - Incident timeline
+---
+
+# 📸 Investigation Evidence
+
+## Sysmon Process Creation
+
+![Sysmon Evidence](../../assets/images/sysmon-process-creation.png)
+
+---
+
+## CyberChef Base64 Decode
+
+![CyberChef Evidence](../../assets/images/cyberchef-base64-decode.png.png)
+
+---
+
+## Wireshark Malware Traffic
+
+![Wireshark Evidence](../../assets/images/wireshark-malware-traffic.png)
