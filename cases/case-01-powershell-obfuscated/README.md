@@ -147,3 +147,30 @@ Planned screenshots:
 ## Wireshark Malware Traffic
 
 ![Wireshark Evidence](../../assets/images/wireshark-malware-traffic.png)
+
+---
+
+# 🧾 IOC Summary
+
+| IOC Type | Value |
+|----------|-------|
+| External IP | 80.71.157.216 |
+| Internal Host | 10.1.6.101 |
+| Suspicious Process | powershell.exe |
+| Parent Process | chrome.exe |
+| Protocol | HTTP |
+| Payload Type | application/gzip |
+| Technique | PowerShell Obfuscation |
+| MITRE ATT&CK | T1059.001 |
+
+---
+
+# 📌 Analyst Conclusion
+
+The investigation confirmed suspicious PowerShell activity associated with obfuscated command execution and external payload retrieval behavior.
+
+Network analysis identified outbound HTTP communication with a suspicious external server, followed by successful payload delivery using compressed content transfer.
+
+The attack chain demonstrated characteristics commonly observed in phishing-based malware delivery campaigns leveraging fileless execution techniques.
+
+Immediate containment actions were performed to reduce the risk of lateral movement and additional payload execution within the environment.
