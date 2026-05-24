@@ -144,6 +144,21 @@ Initial OSINT and threat intelligence analysis identified suspicious characteris
 
 ---
 
+## URLScan Analysis
+
+Threat intelligence investigation identified that the phishing domain was no longer actively resolving during analysis.
+
+This behavior is commonly observed in phishing infrastructure that has been:
+
+- Taken down
+- Abandoned
+- Blacklisted
+- Disabled after detection
+
+### Evidence
+
+![URLScan Analysis](../../assets/images/urlscan-domain-resolution-failure.png)
+
 # 📌 Analyst Notes
 
 The analyzed infrastructure demonstrated patterns frequently observed in phishing campaigns designed to harvest corporate credentials through impersonation and fake authentication portals
