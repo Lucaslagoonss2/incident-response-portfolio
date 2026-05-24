@@ -144,6 +144,19 @@ Initial OSINT and threat intelligence analysis identified suspicious characteris
 
 ---
 
+---
+
+## VirusTotal Reputation Analysis
+
+Multiple security vendors identified the domain as malicious or phishing-related during threat intelligence analysis.
+
+The investigation revealed detections commonly associated with credential harvesting infrastructure and phishing campaigns.
+
+### Evidence
+
+![VirusTotal Analysis](../../assets/images/virustotal-phishing-detection.png)
+
+
 ## URLScan Analysis
 
 Threat intelligence investigation identified that the phishing domain was no longer actively resolving during analysis.
