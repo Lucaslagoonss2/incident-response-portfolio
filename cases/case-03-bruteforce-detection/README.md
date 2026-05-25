@@ -4,7 +4,7 @@
 **Analyst:** Lucas Rodrigues  
 **Severity:** HIGH  
 **Environment:** Windows Lab Environment  
-**Tools:** Hydra, Windows Event Viewer, PowerShell, Wireshark, Sysmon
+**Tools:** Hydra, Windows Event Viewer, PowerShell, Wireshark, Sysmon, OpenSSH
 
 ---
 
@@ -12,13 +12,13 @@
 
 A brute force authentication attack was identified against a Windows host during a controlled lab simulation.
 
-Multiple failed authentication attempts were detected targeting a local user account through repeated password guessing activity.
+Multiple failed authentication attempts were detected targeting a local user account through repeated password guessing activity over SSH authentication services.
 
-The attack simulation was performed using Hydra in a controlled environment to emulate common credential access techniques observed in real-world intrusion attempts.
+The attack simulation was performed using Hydra in a controlled environment to emulate common credential access techniques frequently observed in real-world intrusion attempts.
 
-Initial investigation identified repeated failed logons, authentication anomalies and suspicious login patterns associated with brute force activity.
+Initial investigation identified repeated failed logons, authentication anomalies, suspicious login patterns and Event ID 4625 failures associated with brute force behavior.
 
-The incident was classified as HIGH severity due to the risk of credential compromise and unauthorized access.
+The incident was classified as HIGH severity due to the potential risk of credential compromise and unauthorized remote access.
 
 ---
 
@@ -26,11 +26,12 @@ The incident was classified as HIGH severity due to the risk of credential compr
 
 ## Initial Indicators
 
-- Multiple failed authentication attempts
+- Multiple failed SSH authentication attempts
 - Repeated username targeting
-- Suspicious authentication patterns
-- Rapid login failures
-- Potential password guessing activity
+- Rapid authentication failures
+- Password guessing activity observed
+- Windows Event ID 4625 spikes detected
+- Repeated failed logons from same source IP
 
 ---
 
@@ -39,10 +40,29 @@ The incident was classified as HIGH severity due to the risk of credential compr
 ## Observed Behavior
 
 - Consecutive failed logons detected
-- Repeated authentication attempts from same source
-- User account enumeration behavior
-- Possible brute force activity
-- Authentication failure spikes observed
+- Repeated SSH authentication attempts
+- Authentication anomalies identified
+- Password spraying/brute force patterns observed
+- Failed logons recorded in Windows Security logs
+- Event Viewer correlation confirmed attack activity
+
+---
+
+# 🌐 Attack Simulation
+
+## Hydra Command
+
+```bash
+hydra -l soclab -P passwords.txt ssh://172.168.1.254
+```
+
+## Attack Findings
+
+- SSH authentication service targeted
+- Multiple password attempts observed
+- Local Windows account targeted
+- Successful password discovery achieved in lab environment
+- Repeated failed authentication events generated
 
 ---
 
@@ -52,6 +72,7 @@ The incident was classified as HIGH severity due to the risk of credential compr
 |--------|-----------|----|
 | Credential Access | Brute Force | T1110 |
 | Credential Access | Password Guessing | T1110.001 |
+| Initial Access | Valid Accounts | T1078 |
 
 ---
 
@@ -59,38 +80,73 @@ The incident was classified as HIGH severity due to the risk of credential compr
 
 | IOC Type | Value |
 |----------|-------|
-| Attack Type | Brute Force |
+| Attack Type | SSH Brute Force |
 | Tool | Hydra |
 | Event ID | 4625 |
+| Authentication Service | OpenSSH |
+| Source IP | 172.168.1.254 |
+| Target Account | soclab |
 | Technique | Password Guessing |
 | Authentication Type | Failed Logon |
+
+---
+
+# 🖥️ Event Viewer Analysis
+
+## Windows Security Logs
+
+Windows Event Viewer analysis identified multiple Event ID 4625 entries associated with failed authentication attempts.
+
+### Observed Indicators
+
+- Repeated failed logons
+- Authentication failure spikes
+- Multiple login attempts in short period
+- Brute force behavior pattern identified
+- Failed SSH authentication attempts
+
+### Evidence
+
+![Brute Force Detection](../../assets/images/bruteforce-hydra-event4625.png)
 
 ---
 
 # 🔒 Containment Actions
 
 - Monitored suspicious authentication attempts
-- Recommended account lockout policies
-- Reviewed authentication logs
+- Reviewed Windows Security logs
 - Investigated targeted accounts
+- Recommended account lockout policies
 - Recommended MFA implementation
+- Suggested SSH access restrictions
+- Recommended strong password enforcement
 
 ---
 
 # 📚 Lessons Learned
 
 - Authentication monitoring is critical
-- Failed logon analysis can identify attacks early
+- Event ID 4625 provides valuable detection visibility
 - Strong password policies reduce brute force risk
 - MFA significantly improves account security
+- Account lockout policies help mitigate password attacks
+- SSH exposure should be minimized when possible
 
 ---
 
-# 📸 Planned Evidence
+# 📸 Evidence Collected
 
-- Hydra attack simulation
-- Windows Event Viewer logs
-- Event ID 4625 evidence
-- Failed logon analysis
+- Hydra brute force simulation
+- Windows Event Viewer analysis
+- Event ID 4625 failed logons
+- SSH authentication evidence
 - Authentication timeline
-- IOC correlation
+- IOC correlation screenshots
+
+---
+
+# 📌 Analyst Notes
+
+The simulated attack demonstrated common brute force behavior patterns frequently observed during credential access attempts against exposed authentication services.
+
+Log correlation between Hydra activity and Windows Security Event ID 4625 entries successfully confirmed the attack simulation and associated authentication failures.
