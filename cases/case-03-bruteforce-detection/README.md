@@ -107,7 +107,7 @@ Windows Event Viewer analysis identified multiple Event ID 4625 entries associat
 
 ### Evidence
 
-![Brute Force Detection](../../assets/images/bruteforce-hydra-event4625.png)
+![Brute Force Detection](../../assets/images/hydra-bruteforce-event4625-correlation.png)
 
 ---
 
