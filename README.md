@@ -43,7 +43,7 @@ The goal of this project is to develop hands-on Blue Team and SOC Tier 1 skills 
 |------|-------------|--------|
 | 01 | PowerShell Obfuscated Execution | ✅ Completed |
 | 02 | Phishing URL Analysis | ✅ Completed |
-| 03 | Brute Force Detection | 🔄 Planned |
+| 03 | Brute Force Detection | ✅ Completed|
 | 04 | Scheduled Task Persistence | 🔄 Planned |
 | 05 | Lateral Movement via RDP | 🔄 Planned |
 
